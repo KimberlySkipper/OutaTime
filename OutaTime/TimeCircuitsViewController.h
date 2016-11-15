@@ -17,8 +17,10 @@
 //
 // 9. The TimeCircuitsViewController needs to implement the delegate protocol to receive the destination date from the picker
 //    view. The way to declare a class as a delegate is to put the name of the delegate in between <>. It goes after the
-//    superclass declaration (UIViewController below)
+//    superclass declaration (UIViewController below) or it can go in the immplementation file.
 //
 @interface TimeCircuitsViewController : UIViewController
+
+
 
 @end

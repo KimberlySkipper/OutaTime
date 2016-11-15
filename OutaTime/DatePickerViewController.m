@@ -27,7 +27,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    //
+    [self.delegate destinationDateWasChosen:self.datePicker.date];
     // 11. We need to call a method to tell the delegate that a destination date was chosen and pass the date from the
     //    datePicker object.
     //

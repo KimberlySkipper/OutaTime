@@ -9,8 +9,7 @@
 #import "TimeCircuitsViewController.h"
 #import "DatePickerViewController.h"
 
-@interface TimeCircuitsViewController ()
-
+@interface TimeCircuitsViewController () <TimeCircuitsDatePickerDelegate>
 @property (nonatomic) NSTimer *speedTimer;
 @property (nonatomic) NSDateFormatter *timeCircuitReadouts;
 @property (assign) NSInteger currentSpeed;
@@ -102,9 +101,10 @@
     if ([segue.identifier isEqualToString:@"ShowDestinationDatePickerSegue"])
     {
         DatePickerViewController *timePickerVC = (DatePickerViewController *)[segue destinationViewController];
+        timePickerVC.delegate =self;
         //
         // 10. This view controller needs to be set as the time picker view controller's delegate object.
-        //
+
         
     }
 }
@@ -162,7 +162,7 @@
     // 16. We need to stop the timer object here. The method to call is called "invalidate".
     //    Once it's stopped, we want to nil out the object so we can create a new one when the user asks to travel back
     //    again.
-    [self.speedTimer invalidate];
+    [self.speedTimer invalidate];// this is specifically for a timer. You can only stop something that is counting
     self.speedTimer = nil;
 
 
@@ -189,41 +189,23 @@
         //
         // 20. If the speed variable is at least 88, we want to stop the timer here.
         
-        [self stopTimer];
-
+         [self stopTimer];
+        
         //
         // 21. Then we need to update the lastTimeDepartedLabel with the value of the presentTimeLabel.
-        //
+        self.lastTimeDepartedLabel.text = self.presentTimeLabel.text;
 
         //
         // 22. The presentTimeLabel needs to take the value of the destinationTimeLabel here.
-        //
-        
+        self.presentTimeLabel.text = self.destinationTimeLabel.text;
+    
         //
         // 23. Lastly, we need to reset the current speed label to 0 here.
-        //
+        
+        self.currentSpeed = 0;
         
     }
 }
-/*
--(void)timerFired
-{
-    if(self.currentTimeValue > 0)
-    {
-        self.currentTimeValue = self.currentTimeValue- 1;
-        self.timeLabel.text = [NSString stringWithFormat:@"%ld sec", (long)self.currentTimeValue];
-        //timer counting down
-    }
-    else
-    {
-        [self.timer invalidate];
-        //timer is not longer active, turn off timer, stop.
-        self.timer = nil;
-        //lets go of the value to allow if to be reset.
-    }
-}
-
-*/
 
 
 
