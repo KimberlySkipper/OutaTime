@@ -145,7 +145,7 @@
         //    method each time the time interval has elapsed. Use this to instantiate your timer for 0.1 sec intervals. It
         //    will need to fire our custom method to update the speed label.
         //
-        self.speedTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateSpeed) userInfo:nil repeats:YES];
+        self.speedTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateSpeed) userInfo:nil repeats:YES];
 
 //        NSTimer *aTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
 //                                                           target:self
@@ -178,7 +178,7 @@
     {
         //
         // 18. If it's not yet set to 88, we want to increment the current speed variable by 1.
-        self.currentSpeed = self.currentSpeed + 11;
+        self.currentSpeed = self.currentSpeed + 1;
         
         //
         // 19. Here we want to update the speed label to reflect the current speed.
